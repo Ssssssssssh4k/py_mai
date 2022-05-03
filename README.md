@@ -29,6 +29,6 @@ python ./main.py
 
 
 
-# Всем удачного дня и хорошего настроения
+# Всем удачного дня и хорошего настроения :sunglasses:
 
 ![Владимир Владимирович](https://afon-ru.com/files/jpg/Vladimir-Putin.jpg)
