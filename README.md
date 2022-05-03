@@ -12,8 +12,10 @@
 
 ## Запуск программы
 
+```
 pip install -r requirements.txt
 python ./main.py
+```
 
 ## Пример выполнения программы
 
