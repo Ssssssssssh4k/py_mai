@@ -10,16 +10,17 @@
 - <url>/user/<username или id>
 5) Роут /user/<username или id> проверит пользователя в словаре users, и если нет, то вернет 404
 
-## Работа с программой
+## Запуск программы
 
-*работа с программой*
+pip install -r requirements.txt
+python ./main.py
 
 ## Пример выполнения программы
 
 ### Пользователь есть в базе
 
-*скрин*
+![Пользователь есть в базе](https://myoctocat.com/assets/images/base-octocat.svg)
 
 ### Пользователь не обнаружен
 
-*скрин*
+![Пользователь не обнаружен](https://myoctocat.com/assets/images/base-octocat.svg)
