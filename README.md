@@ -19,8 +19,8 @@ python ./main.py
 
 ### Пользователь есть в базе
 
-![Пользователь есть в базе](https://myoctocat.com/assets/images/base-octocat.svg)
+![Пользователь есть в базе](/Images/vvp.png)
 
 ### Пользователь не обнаружен
 
-![Пользователь не обнаружен](https://myoctocat.com/assets/images/base-octocat.svg)
+![Пользователь не обнаружен](/Images/list.png)
