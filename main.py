@@ -1,33 +1,39 @@
 import flask
-from flask import Flask, request, make_response, redirect, abort
+from flask import Flask, make_response, redirect, abort
+
+app = Flask(__name__, template_folder="typical_pages")
 
 app = Flask(__name__)
-#print(name)
-
-names = ['user1','user2', 'user3']
+data = [{'id': 1, 'name': 'Postavte', 'surname': 'Pojaluista', 'age': 5},
+        {'id': 2, 'name': 'Vladimir', 'surname': 'Putin', 'age': 69}]
 
 @app.route('/')
 def index():
-    return '<h1>Hello</h1>', 400
+    return redirect('/users')
 
-@app.route('/error')
-def error():
-    abort(404)
+@app.route('/users')
+def userdata():
+    retuser = ""
+    for i in data:
+        id = i['id']
+        name = i['name']
+        surname = i['surname']
+        age = i['age']
+        retuser += f'<h1><a href="/user/{id}"> {id}. {name} {surname} {age} </a></h1><hr style="border: 5px solid blue;">'
+    return retuser
 
 @app.route('/home')
 def home():
     return redirect('/')
 
-@app.route('/user/<name>')
-def user(name):
-    if name in names:
-        #print name in browser
-        user_agent = request.headers.get('User-Agent')
-        response = make_response('<h1>Hello, %s</h1><br>Your browser is %s' % (name, user_agent))
-        response.set_cookie('answer','42')
-        return response
-    else:
-        return error()
+@app.route('/user/<id>')
+def user(id):
+    for i in data:
+        item_id = str(i['id'])
+        if item_id == id:
+            response = make_response(f'<h1>Hello! </br> </br> Your name is {i["name"]} </br> Your age is {i["age"]}</h1>')
+            return response
+    return abort(404)
 
 if __name__=='__main__':
     app.run(debug=True)
