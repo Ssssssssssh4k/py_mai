@@ -1,5 +1,5 @@
 import flask
-from flask import Flask, make_response, redirect, abort
+from flask import Flask, make_response, redirect, abort, render_template, request
 
 app = Flask(__name__, template_folder="typical_pages")
 
@@ -11,29 +11,41 @@ data = [{'id': 1, 'name': 'Postavte', 'surname': 'Pojaluista', 'age': 5},
 def index():
     return redirect('/users')
 
-@app.route('/users')
-def userdata():
-    retuser = ""
-    for i in data:
-        id = i['id']
-        name = i['name']
-        surname = i['surname']
-        age = i['age']
-        retuser += f'<h1><a href="/user/{id}"> {id}. {name} {surname} {age} </a></h1><hr style="border: 5px solid blue;">'
-    return retuser
-
 @app.route('/home')
 def home():
-    return redirect('/')
+    return redirect('/users')
+
+@app.route('/users')
+def user_list():
+    return render_template('userlist.html', data=data)
 
 @app.route('/user/<id>')
-def user(id):
+def user_profile(id):
     for i in data:
         item_id = str(i['id'])
         if item_id == id:
-            response = make_response(f'<h1>Hello! </br> </br> Your name is {i["name"]} </br> Your age is {i["age"]}</h1>')
-            return response
+            return render_template('userprofile.html', user=i)
     return abort(404)
+
+@app.route('/registration', methods=["get", "post"])
+def new_user():
+    if request.method == "GET":
+        return render_template("registration.html")
+
+    name = request.form.get("name")
+    surname = request.form.get("surname")
+    age = request.form.get("age")
+
+    last_id = 0
+    if len(data) > 0:
+        last_id = data[-1]["id"]
+    data.append({"id": last_id + 1, "name": name, "surname": surname, "age": age})
+    return ('<h1>Success!</h1>')
+    return redirect('/users')
+
+@app.route('/ban')
+def ban():
+    return render_template('jaloba.html')
 
 if __name__=='__main__':
     app.run(debug=True)

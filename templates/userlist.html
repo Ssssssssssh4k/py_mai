@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FlaskApp</title>
+</head>
+<body>
+    <h1>Госуслуги</h1>
+        {% for user in data %}
+            <a href="/user/{{ user.id }}">
+            <p> {{ user['id'] }}. {{ user['surname'] }} {{ user['name'] }}, {{ user['age'] }}y.o.</p>
+            </a>
+        {% endfor %}
+    <a href="/registration">СТАТЬ ПОЛНОЦЕННЫМ ГРАЖДАНИНОМ</a>
+    <h1></h1>
+    <a href="/ban">Выразить недовольство действующим режимом</a>
+
+</body>
+</html>
